@@ -1,9 +1,6 @@
 module Main (main) where
 
-telja :: Int -> IO ()
-telja x =
- (if x > 1 then telja (x-1) else return ()) >> (print x)
-
 main :: IO ()
 main =
-  getLine >>= (\ x -> telja (read x :: Int))
+  getLine >>= (\ x -> return (read x :: Int))
+          >>= (\ x -> foldl (\ io y -> io >> print y) (return ()) [1..x])

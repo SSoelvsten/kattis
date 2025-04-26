@@ -1,8 +1,6 @@
 module Main (main) where
 
-import Control.Monad
-
 main :: IO ()
 main =
-  getLine >>= (\ x -> return (read x :: Int))
-          >>= (\ x -> foldM (\ () y -> print y) () [1..x])
+  getLine >>= (\ x  -> return [1..(read x :: Int)])
+          >>= (\ xs -> sequence_ (map print xs))

@@ -1,0 +1,6 @@
+# Snapshot to use
+snapshot: ghc-9.4.7
+
+# User packages to be built.
+packages:
+- .

@@ -1,7 +1,7 @@
 module Main (main) where
 
 getInt :: IO Int
-getInt = getLine >>= (\ x -> return (read x :: Int))
+getInt = getLine >>= (return . read)
 
 main :: IO ()
 main = do

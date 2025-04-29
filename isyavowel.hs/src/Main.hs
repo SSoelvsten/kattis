@@ -4,10 +4,6 @@ import Control.Monad
 import Data.Function
 import qualified Data.List as List
 
-exists :: (a -> Bool) -> [a] -> Bool
-exists _ []     = False
-exists f (x:xs) = if f x then True else exists f xs
-
 vowels :: Bool -> [Char]
 vowels y = (if y then ['y', 'Y'] else []) ++ ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
 
@@ -18,6 +14,6 @@ main :: IO ()
 main = do
   s <- getLine
   let bools = map (== 1) ([0..1] :: [Int])
-  let preds = map (\ y -> (\ x -> exists (== x) (vowels y))) bools
+  let preds = map (\ y -> (\ x -> any (== x) (vowels y))) bools
   let out   = map (\ f -> count f s) preds
   putStrLn  $ (map show out) & (List.intersperse " ") & join
